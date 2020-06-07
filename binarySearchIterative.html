@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //@Binary Search to find an element in an array
+      //@Iterative method
+      //@Time required is 0(logn) compared to traditional binary search of 0(n)
+      iterativeFunction = (array, x) => {
+        let startIndex = 0;
+        let endIndex = array.length - 1;
+
+        if (startIndex > endIndex) return document.write("invalid input");
+
+        while (startIndex <= endIndex) {
+          let mid = Math.floor((startIndex + endIndex) / 2);
+          if (array[mid] === x)
+            return document.write(`Position is ${mid} in the array`);
+
+          if (x < array[mid]) endIndex = mid - 1;
+          else startIndex = mid + 1;
+        }
+        return document.write("not found");
+      };
+
+      let arr = [1, 3, 5, 7, 8, 9];
+      let x = 2;
+      iterativeFunction(arr, x);
+    </script>
+  </body>
+</html>

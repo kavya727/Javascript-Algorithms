@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <style>
+      td {
+        width: 20px;
+        height: 20px;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <label>Start Number:</label>
+    <input type="number" id="startNum" />
+    <label>End Number:</label>
+    <input type="number" id="endNum" />
+    <button onclick="generateTable()">
+      Submit
+    </button>
+    <div id="table"></div>
+    <script>
+      let startNum,
+        endNum = 0;
+      let startArray = ["X"];
+      let tableArray = [[]];
+      function generateTable() {
+        startNum = Number(document.getElementById("startNum").value);
+        endNum = Number(document.getElementById("endNum").value);
+        console.log(startNum, endNum);
+        for (let i = startNum; i <= endNum; i++) {
+          startArray.push(i);
+          console.log(startArray);
+        }
+
+        for (let i = 0; i < startArray.length; i++) {
+          tableArray[i] = [];
+          for (let j = 0; j < startArray.length; j++) {
+            if (i == 0) {
+              tableArray[i].push(startArray[j]);
+            } else if (i != 0 && j == 0) {
+              tableArray[i][j] = startArray[i];
+            } else {
+              tableArray[i][j] = startArray[i] * startArray[j];
+            }
+          }
+        }
+
+        console.log(tableArray);
+        for (let i = 0; i < tableArray.length; i++) {
+          var row = document.createElement("tr");
+          for (let j = 0; j < tableArray.length; j++) {
+            var column = document.createElement("td");
+            var text = document.createTextNode(tableArray[i][j]);
+            column.appendChild(text);
+            row.appendChild(column);
+            document.getElementById("table").appendChild(row);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

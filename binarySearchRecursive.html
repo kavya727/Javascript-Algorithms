@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //@Binary Search to find an element in an array
+      //@Recursive method
+      //@Time required is 0(logn) compared to traditional binary search of 0(n)
+      recursiveFunction = (array, x, start, end) => {
+        if (start > end) return document.write("invalid input");
+
+        let mid = Math.floor((start + end) / 2);
+        if (array[mid] === x) return document.write(`Position is ${mid}`);
+
+        if (x < array[mid]) return recursiveFunction(array, x, start, mid - 1);
+        else return recursiveFunction(array, x, mid + 1, end);
+
+        return document.write("not found");
+      };
+
+      let arr = [1, 3, 5, 7, 8, 9];
+      let x = 7;
+      recursiveFunction(arr, x, 0, arr.length - 1);
+    </script>
+  </body>
+</html>

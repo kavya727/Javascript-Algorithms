@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //convert graph into a tree, a node can not have more than 2 child nodes as per this logic
+      //queue.js can be used to perform same, queue.js provides inbuilt methods like enqueue, dequeue, peek
+      const tree = [
+        { value: 1, left: 2, right: 3 },
+        { value: 2, left: 4, right: 5 },
+        { value: 3, left: 5, right: null },
+        { value: 4, left: 6, right: 5 },
+        { value: 5, left: 4, right: 6 },
+        { value: 6, left: null, right: null }
+      ];
+
+      bfs = (tree, value) => {
+        const queue = [];
+        //assuming 1 to be the root node
+        queue.push(tree[0]); //enqueing
+
+        while (queue.length !== 0) {
+          for (let i = 0; i < queue.length; i++) {
+            let node = queue.shift(); //dequeing
+
+            if (node.value === value) {
+              return node; // find a match
+            }
+            if (node.left) {
+              queue.push(tree[node.left]);
+            }
+            if (node.right) {
+              queue.push(tree[node.right]);
+            }
+          }
+        }
+        return null;
+      };
+
+      console.log(bfs(tree, 3));
+    </script>
+  </body>
+</html>

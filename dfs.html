@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const graph = [
+        { value: 6, left: 5, right: 7 },
+        { value: 5, left: 3, right: 4 },
+        { value: 7, left: 9, right: null },
+        { value: 3, left: 2, right: null },
+        { value: 4, left: null, right: null },
+        { value: 9, left: 8, right: 10 },
+        { value: 2, left: 1, right: null },
+        { value: 1, left: null, right: null }
+      ];
+
+      dfs = (graph, value) => {
+        let stack = [];
+
+        stack.push(graph[0]);
+
+        while (stack.length !== 0) {
+          for (let i = 0; i < stack.length; i++) {
+            let node = stack.pop();
+            if (node.value === value) return node;
+
+            if (node.left) stack.push(graph[node.left]);
+
+            if (node.right) stack.push(graph[node.right]);
+          }
+        }
+
+        return null;
+      };
+
+      console.log(dfs(graph, 9));
+    </script>
+  </body>
+</html>
